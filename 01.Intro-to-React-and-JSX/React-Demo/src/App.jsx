@@ -1,16 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import Header from '../components/Header'
+import Body from '../components/Body'
 import './App.css'
 
 function App() {
   return (
     <div>
-      <div>
-        <h1> My First React Application</h1>
-      </div>
+      <Header />
 
-      <h1>Vite + React = best combo</h1>
+      <Body />
     </div>
   )
 }
