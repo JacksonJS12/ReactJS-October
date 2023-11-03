@@ -1,4 +1,5 @@
 import MovieList from './component/MovieList'
+import Movies from './assets/movies'
 import './App.css'
 
 const movies = [
@@ -22,7 +23,7 @@ function App() {
     <div>
       <h1>My first dynamic React Application!</h1>
     
-      <MovieList />
+      <MovieList headingText="Movie List" secondaryText="Secondary List"/>
     </div>
   )
 }
