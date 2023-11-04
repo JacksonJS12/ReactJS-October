@@ -23,7 +23,7 @@ function App() {
     <div>
       <h1>My first dynamic React Application!</h1>
     
-      <MovieList headingText="Movie List" secondaryText="Secondary List"/>
+      <MovieList movies={movies} headingText="Movie List"/>
     </div>
   )
 }
