@@ -3,12 +3,14 @@ import * as userService from "../services/UserService";
 import { useEffect, useState } from "react";
 import CreateUserModal from "./CreateUserModal";
 import UserInfoModal from "./UserInfoModal";
+import UserDeleteModal from "./UserDeleteModal";
 
 const UserListTable = () => {
     const [users, setUsers] = useState([]);
     const [showCreate, setShowCreate] = useState(false);
     const [showInfo, setShowInfo] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
+    const [showDelete, setShowDelete] = useState(false);
 
     useEffect(() => {
         userService
@@ -39,6 +41,19 @@ const UserListTable = () => {
         setSelectedUser(userId);
         setShowInfo(true);
     };
+
+    const deleteUserClickHandler = (userId) => {
+        setSelectedUser(userId);
+        setShowDelete(true);
+    };
+
+    const deleteUserHandler = async () => {
+        const result = await userService.remove(selectedUser);
+        
+        setUsers(state => state.filter(user => user._id !== selectedUser));
+        
+        setShowDelete(false);
+    };
     return (
         <div className="table-wrapper">
             {showCreate && (
@@ -52,6 +67,13 @@ const UserListTable = () => {
                 <UserInfoModal
                     onClose={() => setShowInfo(false)}
                     userId={selectedUser}
+                />
+            )}
+
+            {showDelete && (
+                <UserDeleteModal
+                    onClose={() => setShowDelete(false)}
+                    onDelete={deleteUserHandler}
                 />
             )}
 
@@ -163,6 +185,7 @@ const UserListTable = () => {
                             lastName={user.lastName}
                             phoneNumber={user.phoneNumber}
                             onInfoClick={userInfoClickHandler}
+                            onDeleteClick={deleteUserClickHandler}
                         />
                     ))}
                 </tbody>
