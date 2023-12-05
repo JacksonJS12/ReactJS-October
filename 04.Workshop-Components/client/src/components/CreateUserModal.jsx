@@ -1,15 +1,15 @@
 const CreateUserModal = ({ 
-  hideModal,
-  onUserCreate
+  onClose,
+  onCreate,
 }) => {
     return (
         <div className="overlay">
-            <div className="backdrop" onClick={hideModal}></div>
+            <div className="backdrop" onClick={onClose}></div>
             <div className="modal">
                 <div className="user-container">
                     <header className="headers">
                         <h2>Edit User/Add User</h2>
-                        <button className="btn close" onClick={hideModal}>
+                        <button className="btn close" onClick={onClose}>
                             <svg
                                 aria-hidden="true"
                                 focusable="false"
@@ -27,7 +27,7 @@ const CreateUserModal = ({
                             </svg>
                         </button>
                     </header>
-                    <form onSubmit={onUserCreate}>
+                    <form onSubmit={onCreate}>
                         <div className="form-row">
                             <div className="form-group">
                                 <label htmlFor="firstName">First name</label>
@@ -169,7 +169,7 @@ const CreateUserModal = ({
                                 id="action-cancel"
                                 className="btn"
                                 type="button"
-                                onClick={hideModal}
+                                onClick={onClose}
                             >
                                 Cancel
                             </button>

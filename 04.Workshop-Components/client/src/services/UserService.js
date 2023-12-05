@@ -9,6 +9,13 @@ export const getAll = async () => {
     return data;
 };
 
+export const getOne = async (userId) => {
+    const response = await fetch(`${baseUrl}/${userId}`);
+    const result = await response.json();
+
+    return result;
+};
+
 export const create = async (data) => {
     const body = {
         firstName: data.firstName,
@@ -23,19 +30,27 @@ export const create = async (data) => {
             city: data.city,
             street: data.street,
             streetNumber: data.streetNumber,
-        }
+        },
     };
 
     const response = await fetch(baseUrl, {
-        method: 'POST',
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json",
         },
         body: JSON.stringify(body),
-    })
+    });
 
     const result = await response.json();
     console.log(result);
 
     return result;
+};
+
+export const remove = async (userId) => {
+        const response = await fetch(`${baseUrl}/${userId}`, {
+            method: 'DELETE'
+        });
+
+        const result = await response.json();
 };
